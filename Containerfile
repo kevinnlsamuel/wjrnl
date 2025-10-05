@@ -1,0 +1,7 @@
+FROM docker.io/library/php:8.5-rc-zts-alpine3.22
+
+WORKDIR /srv/wjrnl
+
+COPY site/ /srv/wjrnl
+
+CMD ["php", "-S", "0.0.0.0:5678", "-t", "/srv/wjrnl"]
