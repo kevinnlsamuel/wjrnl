@@ -16,16 +16,9 @@ run:
 		--name {{PROJECT}} \
 		{{PROJECT}}:production
 
-containerise flavour="production":
-	#!/bin/sh
-	set -e
+containerise:
+	podman build --tag {{PROJECT}}:production --file "Containerfile"
 
-	TAG='production'
-	FILE='Containerfile'
-
-	if echo "{{flavour}}" | grep -Eq 'dev(elop(ment)?)?'; then
-		TAG='development'
-		FILE='Containerfile.development'
-	fi
-
-	podman build --tag {{PROJECT}}:"${TAG}" --file "${FILE}"
+build-dev-images:
+	podman build --tag wjrnl-php:development --file Containerfile.development
+	podman build --tag tailwindcss:development --file Containerfile.tailwindcss.development
