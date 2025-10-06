@@ -2,12 +2,12 @@ FROM alpine:3.22
 
 ARG TW_VERSION=v4.1.14
 
-RUN echo "${TW_VERSION}"
+RUN apk add --no-cache libstdc++ libgcc
 RUN wget \
 	-qO /usr/local/bin/tailwindcss \
-	"https://github.com/tailwindlabs/tailwindcss/releases/download/${TW_VERSION}/tailwindcss-linux-x64"
+	https://github.com/tailwindlabs/tailwindcss/releases/download/${TW_VERSION}/tailwindcss-linux-x64-musl
 RUN chmod +x /usr/local/bin/tailwindcss
 
 WORKDIR /src
 
-ENTRYPOINT ["/usr/local/bin/tailwindcss", "--watch"]
+ENTRYPOINT ["/usr/local/bin/tailwindcss", "--watch=always"]
