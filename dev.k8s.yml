@@ -5,48 +5,41 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  annotations:
-    io.kubernetes.cri-o.SandboxID/php.wjrnl: 0226008e6e7e731989f5aeaa05820fbe8f91fbdf4ae928c72f7fcc762bc1978f
-    io.kubernetes.cri-o.SandboxID/tailwindcss.wjrnl: 0226008e6e7e731989f5aeaa05820fbe8f91fbdf4ae928c72f7fcc762bc1978f
-  creationTimestamp: "2025-10-07T19:55:22Z"
-  labels:
-    app: wjrnl
   name: wjrnl
+
 spec:
   containers:
-  - args:
-    - php
-    - -S
-    - 0.0.0.0:5678
-    - -t
-    - /srv/wjrnl
+  -
     image: localhost/wjrnl:development
-    name: php.wjrnl
+    name: php
     ports:
     - containerPort: 5678
       hostPort: 5678
     volumeMounts:
     - mountPath: /srv/wjrnl
-      name: home-kevinnlsamuel-code-wjrnl-site-host-0
-  - args:
-    - -i
-    - /src/input.css
-    - -o
-    - /src/site/style.css
+      name: wjrnl-site
+
+  -
+    args:
+      - "--input"
+      - "input.css"
+      - "--output"
+      - "site/style.css"
     image: localhost/tailwindcss:development
-    name: tailwindcss.wjrnl
+    name: tailwindcss
     volumeMounts:
     - mountPath: /src/site
-      name: home-kevinnlsamuel-code-wjrnl-site-host-0
+      name: wjrnl-site
     - mountPath: /src/input.css
-      name: home-kevinnlsamuel-code-wjrnl-style.css-host-1
+      name: input-style
+
   volumes:
   - hostPath:
       path: /home/kevinnlsamuel/Code/wjrnl/site
       type: Directory
-    name: home-kevinnlsamuel-code-wjrnl-site-host-0
+    name: wjrnl-site
   - hostPath:
       path: /home/kevinnlsamuel/Code/wjrnl/style.css
       type: File
-    name: home-kevinnlsamuel-code-wjrnl-style.css-host-1
+    name: input-style
 
