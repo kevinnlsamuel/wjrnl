@@ -13,5 +13,6 @@
 			}
 		?>
 	</title>
-
 </head>
+
+<body class="dark:bg-black">
