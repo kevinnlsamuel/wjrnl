@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@layer base {
+	body {
+		@variant dark {
+			@apply text-white;
+			@apply bg-neutral-900;
+		}
+	}
+}
