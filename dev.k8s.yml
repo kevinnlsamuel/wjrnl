@@ -1,0 +1,52 @@
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-5.6.2
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    io.kubernetes.cri-o.SandboxID/php.wjrnl: 0226008e6e7e731989f5aeaa05820fbe8f91fbdf4ae928c72f7fcc762bc1978f
+    io.kubernetes.cri-o.SandboxID/tailwindcss.wjrnl: 0226008e6e7e731989f5aeaa05820fbe8f91fbdf4ae928c72f7fcc762bc1978f
+  creationTimestamp: "2025-10-07T19:55:22Z"
+  labels:
+    app: wjrnl
+  name: wjrnl
+spec:
+  containers:
+  - args:
+    - php
+    - -S
+    - 0.0.0.0:5678
+    - -t
+    - /srv/wjrnl
+    image: localhost/wjrnl:development
+    name: php.wjrnl
+    ports:
+    - containerPort: 5678
+      hostPort: 5678
+    volumeMounts:
+    - mountPath: /srv/wjrnl
+      name: home-kevinnlsamuel-code-wjrnl-site-host-0
+  - args:
+    - -i
+    - /src/input.css
+    - -o
+    - /src/site/style.css
+    image: localhost/tailwindcss:development
+    name: tailwindcss.wjrnl
+    volumeMounts:
+    - mountPath: /src/site
+      name: home-kevinnlsamuel-code-wjrnl-site-host-0
+    - mountPath: /src/input.css
+      name: home-kevinnlsamuel-code-wjrnl-style.css-host-1
+  volumes:
+  - hostPath:
+      path: /home/kevinnlsamuel/Code/wjrnl/site
+      type: Directory
+    name: home-kevinnlsamuel-code-wjrnl-site-host-0
+  - hostPath:
+      path: /home/kevinnlsamuel/Code/wjrnl/style.css
+      type: File
+    name: home-kevinnlsamuel-code-wjrnl-style.css-host-1
+
