@@ -2,6 +2,10 @@
 
 @layer base {
 	body {
+		@apply sm:max-w-[95%];
+		@apply lg:max-w-[50%];
+		@apply md:max-w-[65%];
+		@apply mx-auto;
 		@variant dark {
 			@apply text-white;
 			@apply bg-neutral-900;
