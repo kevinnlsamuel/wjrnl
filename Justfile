@@ -1,5 +1,6 @@
 PROJECT := 'wjrnl'
 
+replay: down play
 play:
 	podman kube play dev.k8s.yml
 down:
