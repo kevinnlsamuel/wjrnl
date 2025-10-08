@@ -1,5 +1,8 @@
 FROM docker.io/library/php:8.5-rc-zts-alpine3.22
 
+RUN apk add --no-cache pipx
+RUN pipx install --global 'jrnl==4.2.1'
+
 WORKDIR /srv/wjrnl
 
 COPY site/ /srv/wjrnl
