@@ -1,13 +1,11 @@
 <?php
-include 'partials/top.php'
-?>
-
-<?php
-include 'partials/header.php'
+include 'content.php';
+include 'partials/top.php';
+include 'partials/header.php';
 ?>
 
 <p>
-	wjrnl brings jrnl(1) to everywhere with a browser
+<?php echo DESC?>
 </p>
 
 <?php
